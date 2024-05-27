@@ -12,10 +12,11 @@ export default function Player({ initialName, symbol, isActive }) {
         setPlayerName (event.target.value)
     }
 
-    let editablePlayerName = <span className="player-name">{playerName}</span>;
+    
+    let editablePlayerName = <span className="player-name"><button onClick={handleEditClick}>{editing ? 'Save' : playerName}</button></span>;
 
     if (editing) {
-        editablePlayerName = <input type="text" required defaultValue={playerName} onChange={handleChange} />;
+        editablePlayerName = <div><input type="text" required defaultValue={playerName} onChange={handleChange} /><button onClick={handleEditClick}>Save</button></div>;
     }
 
     return (
@@ -23,7 +24,6 @@ export default function Player({ initialName, symbol, isActive }) {
             <span className="player">
                 {editablePlayerName}
                 <span className="player-symbol">{symbol}</span>
-                <button onClick={handleEditClick}>{editing ? 'Save' : 'Edit'}</button>
             </span>
         </li>
     );
